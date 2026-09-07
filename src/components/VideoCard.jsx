@@ -30,6 +30,7 @@ export default function VideoCard({ video }) {
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isControlsVisible, setIsControlsVisible] = useState(false);
 
   useEffect(() => {
     const element = videoRef.current;
@@ -146,7 +147,10 @@ export default function VideoCard({ video }) {
           muted={isMuted}
           className="absolute inset-0 block h-full w-full object-cover"
           aria-label={video.title}
-          onClick={togglePlay}
+          onClick={() => {
+            setIsControlsVisible(true);
+            togglePlay();
+          }}
         />
 
         {/* =================================================
@@ -159,11 +163,14 @@ export default function VideoCard({ video }) {
         ================================================== */}
         <button
           type="button"
-          onClick={togglePlay}
+          onClick={() => {
+            setIsControlsVisible(true);
+            togglePlay();
+          }}
           aria-label={isPlaying ? "Pause video" : "Play video"}
           className={`absolute left-1/2 top-1/2 z-20 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-[#c7ff35] hover:text-[#c7ff35] ${
             isPlaying
-              ? "opacity-0 group-hover:opacity-100"
+              ? `${isControlsVisible ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`
               : "opacity-100"
           }`}
         >
@@ -188,7 +195,7 @@ export default function VideoCard({ video }) {
         {/* =================================================
             VIDEO CONTROLS
         ================================================== */}
-        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-2 px-5 pb-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:px-7 sm:pb-7">
+        <div className={`absolute inset-x-0 bottom-0 z-30 px-5 pb-5 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:px-7 sm:pb-7 ${isControlsVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"}`}>
           {/* PROGRESS */}
           <input
             type="range"

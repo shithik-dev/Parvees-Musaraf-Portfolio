@@ -21,9 +21,7 @@ export async function sendContactEmail({
   company,
   projectType,
   timeline,
-  source,
   details,
-  referenceLink,
 }) {
   const requiredEnvs = ["MAIL_HOST", "MAIL_USER", "MAIL_PASSWORD", "CONTACT_RECEIVER"];
   const missingEnvs = requiredEnvs.filter((key) => !process.env[key]);
@@ -117,31 +115,12 @@ ${details}
             ${timeline || "Not provided"}
           </p>
 
-          <p>
-            <strong>How did they find you?</strong><br />
-            ${source || "Not provided"}
-          </p>
-
           <hr />
 
           <h2>Project Details</h2>
 
           <p style="white-space: pre-line;">
             ${details}
-          </p>
-
-          <hr />
-
-          <h2>Reference / Inspiration</h2>
-
-          <p>
-            ${
-              referenceLink
-                ? `<a href="${referenceLink}" target="_blank" rel="noopener noreferrer">
-                    ${referenceLink}
-                  </a>`
-                : "Not provided"
-            }
           </p>
 
         </div>

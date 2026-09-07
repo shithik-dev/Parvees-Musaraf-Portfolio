@@ -8,10 +8,8 @@ export async function submitContactForm(req, res, next) {
       company,
       projectType,
       timeline,
-      source,
       details: submittedDetails,
       message,
-      referenceLink,
     } = req.body;
 
     const details = submittedDetails || message;
@@ -57,9 +55,7 @@ export async function submitContactForm(req, res, next) {
       company: company?.trim(),
       projectType: projectType.trim(),
       timeline: timeline?.trim(),
-      source: source?.trim(),
       details: details.trim(),
-      referenceLink: referenceLink?.trim(),
     });
 
     return res.status(200).json({

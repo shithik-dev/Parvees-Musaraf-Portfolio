@@ -1,9 +1,18 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 import { services } from "../data/services";
 
 export default function Services() {
+  const [activeServiceId, setActiveServiceId] = useState(null);
+
+  const toggleService = (serviceId) => {
+    setActiveServiceId((currentId) => (
+      currentId === serviceId ? null : serviceId
+    ));
+  };
+
   return (
     <section
       id="services"
@@ -58,7 +67,17 @@ export default function Services() {
                 duration: 0.7,
                 delay: Math.min(index * 0.04, 0.25),
               }}
-              className="group border-b border-white/10"
+              className={`group border-b border-white/10 ${activeServiceId === service.id ? "is-active" : ""}`}
+              onClick={() => toggleService(service.id)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  toggleService(service.id);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-expanded={activeServiceId === service.id}
             >
               <div className="grid gap-6 py-8 md:grid-cols-[80px_1fr_auto] md:items-center md:gap-10 md:py-12 lg:grid-cols-[100px_1fr_0.8fr_auto]">
 
@@ -69,31 +88,31 @@ export default function Services() {
 
                 {/* Title */}
                 <div>
-                  <h3 className="font-display text-3xl font-semibold uppercase leading-none tracking-[-0.04em] transition-colors duration-300 group-hover:text-[#c7ff35] sm:text-4xl md:text-5xl lg:text-6xl">
+                  <h3 className={`font-display text-3xl font-semibold uppercase leading-none tracking-[-0.04em] transition-colors duration-300 group-hover:text-[#c7ff35] sm:text-4xl md:text-5xl lg:text-6xl ${activeServiceId === service.id ? "text-[#c7ff35]" : ""}`}>
                     {service.title}
                   </h3>
                 </div>
 
                 {/* Description */}
                 <div className="max-w-md">
-                  <p className="text-sm leading-7 text-white/40 transition-colors duration-300 group-hover:text-white/60">
+                  <p className={`text-sm leading-7 text-white/40 transition-colors duration-300 group-hover:text-white/60 ${activeServiceId === service.id ? "text-white/60" : ""}`}>
                     {service.description}
                   </p>
                 </div>
 
                 {/* Icon */}
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-[#c7ff35] group-hover:bg-[#c7ff35] group-hover:text-black">
+                <div className={`flex h-12 w-12 items-center justify-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-[#c7ff35] group-hover:bg-[#c7ff35] group-hover:text-black ${activeServiceId === service.id ? "border-[#c7ff35] bg-[#c7ff35] text-black" : ""}`}>
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
 
               {/* Capabilities */}
-              <div className="grid max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-out group-hover:max-h-40 group-hover:pb-8 group-hover:opacity-100 md:pl-[120px] lg:pl-[100px]">
+              <div className={`grid overflow-hidden transition-all duration-500 ease-out group-hover:max-h-40 group-hover:pb-8 group-hover:opacity-100 md:pl-[120px] lg:pl-[100px] ${activeServiceId === service.id ? "max-h-40 pb-8 opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="flex flex-wrap gap-2">
                   {service.capabilities.map((capability) => (
                     <span
                       key={capability}
-                      className="border border-white/10 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.15em] text-white/40 transition-colors duration-300 group-hover:border-white/20 group-hover:text-white/60"
+                      className={`border border-white/10 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.15em] text-white/40 transition-colors duration-300 group-hover:border-white/20 group-hover:text-white/60 ${activeServiceId === service.id ? "border-white/20 text-white/60" : ""}`}
                     >
                       {capability}
                     </span>
