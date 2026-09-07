@@ -203,14 +203,14 @@ export default function Contact() {
               href={`mailto:${contactInfo.email}`}
               className="group border-b border-white/10 py-6 transition-colors duration-300 hover:border-[#c7ff35]"
             >
-              <div className="flex items-start justify-between gap-6">
+              <div className="flex items-start justify-between gap-4 sm:gap-6">
 
-                <div>
+                <div className="min-w-0 flex-1">
                   <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/30">
                     EMAIL
                   </p>
 
-                  <p className="mt-3 break-all text-lg text-white/70 transition-colors duration-300 group-hover:text-white md:text-xl">
+                  <p className="mt-3 max-w-full break-all text-lg text-white/70 transition-colors duration-300 group-hover:text-white md:text-xl">
                     {contactInfo.email}
                   </p>
                 </div>
