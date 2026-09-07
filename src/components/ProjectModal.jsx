@@ -2,10 +2,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
+  Download,
+  ExternalLink,
+  Eye,
+  FileText,
   Maximize2,
   X,
 } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProjectModal({
   project,
@@ -14,6 +18,12 @@ export default function ProjectModal({
   onPrevious,
   onNext,
 }) {
+  const [viewMode, setViewMode] = useState("image");
+
+  useEffect(() => {
+    setViewMode("image");
+  }, [project]);
+
   useEffect(() => {
     if (!project) return;
 
@@ -80,41 +90,81 @@ export default function ProjectModal({
 
           <div className="mx-auto flex min-h-screen w-full max-w-[1600px] items-center px-4 py-20 sm:px-8 lg:px-12">
             <div className="grid w-full gap-10 lg:grid-cols-[1.4fr_0.6fr] lg:gap-16">
-              {/* Image */}
+              {/* Media Section */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
-                className="relative overflow-hidden bg-[#101010]"
+                className="relative flex flex-col overflow-hidden bg-[#101010]"
               >
-                <img
-                  id="project-modal-image"
-                  src={project.image}
-                  alt={project.title}
-                  className="max-h-[75vh] w-full object-contain"
-                />
-
-                {project.gallery?.length > 1 && (
-                  <div className="grid grid-cols-2 gap-2 border-t border-white/10 bg-black/30 p-2">
-                    {project.gallery.map((image, index) => (
-                      <img
-                        key={image}
-                        src={image}
-                        alt={`${project.title} view ${index + 1}`}
-                        className="h-28 w-full object-cover opacity-70"
-                      />
-                    ))}
+                {project.pdf && (
+                  <div className="flex border-b border-white/10 bg-[#0d0d0d]">
+                    <button
+                      type="button"
+                      onClick={() => setViewMode("image")}
+                      className={`flex-1 py-3 font-mono text-[10px] uppercase tracking-[0.2em] transition ${
+                        viewMode === "image"
+                          ? "border-b-2 border-[#c7ff35] bg-[#161616] font-bold text-[#c7ff35]"
+                          : "text-white/50 hover:text-white"
+                      }`}
+                    >
+                      Image Preview
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setViewMode("pdf")}
+                      className={`flex-1 flex items-center justify-center gap-2 py-3 font-mono text-[10px] uppercase tracking-[0.2em] transition ${
+                        viewMode === "pdf"
+                          ? "border-b-2 border-[#c7ff35] bg-[#161616] font-bold text-[#c7ff35]"
+                          : "text-white/50 hover:text-white"
+                      }`}
+                    >
+                      <FileText className="h-3.5 w-3.5" />
+                      PDF Booklet Viewer
+                    </button>
                   </div>
                 )}
 
-                <button
-                  type="button"
-                  onClick={openFullscreen}
-                  aria-label="View image fullscreen"
-                  className="absolute bottom-5 right-5 flex h-11 w-11 items-center justify-center border border-white/20 bg-black/70 text-white transition hover:border-[#c7ff35] hover:text-[#c7ff35]"
-                >
-                  <Maximize2 className="h-4 w-4" />
-                </button>
+                {viewMode === "image" ? (
+                  <>
+                    <img
+                      id="project-modal-image"
+                      src={project.image}
+                      alt={project.title}
+                      className="max-h-[70vh] w-full object-contain"
+                    />
+
+                    {project.gallery?.length > 1 && (
+                      <div className="grid grid-cols-2 gap-2 border-t border-white/10 bg-black/30 p-2">
+                        {project.gallery.map((image, index) => (
+                          <img
+                            key={image}
+                            src={image}
+                            alt={`${project.title} view ${index + 1}`}
+                            className="h-28 w-full object-cover opacity-70 transition hover:opacity-100"
+                          />
+                        ))}
+                      </div>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={openFullscreen}
+                      aria-label="View image fullscreen"
+                      className="absolute bottom-5 right-5 flex h-11 w-11 items-center justify-center border border-white/20 bg-black/70 text-white transition hover:border-[#c7ff35] hover:text-[#c7ff35]"
+                    >
+                      <Maximize2 className="h-4 w-4" />
+                    </button>
+                  </>
+                ) : (
+                  <div className="relative h-[72vh] w-full bg-[#141414]">
+                    <iframe
+                      src={project.pdf}
+                      title={project.pdfTitle || project.title}
+                      className="h-full w-full border-0"
+                    />
+                  </div>
+                )}
               </motion.div>
 
               {/* Information */}
@@ -175,6 +225,46 @@ export default function ProjectModal({
                     </div>
                   </div>
                 </div>
+
+                {project.pdf && (
+                  <div className="mt-8 border border-[#c7ff35]/30 bg-[#c7ff35]/5 p-5">
+                    <div className="flex items-start gap-3">
+                      <FileText className="mt-0.5 h-5 w-5 shrink-0 text-[#c7ff35]" />
+                      <div>
+                        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#c7ff35]">
+                          PDF BOOKLET INCLUDED (ARABIC & ENGLISH)
+                        </p>
+                        <p className="mt-1 text-sm font-semibold text-white">
+                          {project.pdfTitle || "Cibo Menu 2025.pdf"}
+                        </p>
+                        <p className="mt-1 text-xs text-white/50">
+                          Full high-resolution menu booklet available to view or download.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <a
+                        href={project.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-[#c7ff35] px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.15em] text-black transition hover:bg-white"
+                      >
+                        <Eye className="h-4 w-4" />
+                        Open PDF in New Tab
+                      </a>
+
+                      <a
+                        href={project.pdf}
+                        download="Cibo-Menu-2025.pdf"
+                        className="flex items-center gap-2 border border-white/20 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.15em] text-white transition hover:border-[#c7ff35] hover:text-[#c7ff35]"
+                      >
+                        <Download className="h-4 w-4" />
+                        Download PDF (25.8 MB)
+                      </a>
+                    </div>
+                  </div>
+                )}
 
                 {/* Tags */}
                 <div className="mt-8 flex flex-wrap gap-2">

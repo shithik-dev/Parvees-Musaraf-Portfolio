@@ -36,12 +36,14 @@ const makeProject = (id, title, category, image, description, options = {}) => {
     size: options.size || "landscape", description, creativeDirection,
     designApproach, deliverables, tags,
     ...(options.gallery ? { gallery: options.gallery } : {}),
+    ...(options.pdf ? { pdf: options.pdf } : {}),
+    ...(options.pdfTitle ? { pdfTitle: options.pdfTitle } : {}),
     featured: options.featured ?? id <= 12,
   };
 };
 
 const projectSpecs = [
-  ["Cibo Lunch Editions", "restaurant", "/images/restaurant/cibo-monday-lunch-menu.jpg", "Two weekly lunch menu compositions for CiBO Italiano, pairing food photography with a clear three-column offer.", { size: "portrait", gallery: ["/images/restaurant/cibo-monday-lunch-menu.jpg", "/images/restaurant/cibo-wednesday-lunch-menu.jpg"] }],
+  ["Cibo Italiano Menu Booklet", "restaurant", "/images/restaurant/cibo-monday-lunch-menu.jpg", "Complete bilingual menu booklet design (Arabic & English) for CiBO Italiano restaurant, pairing food photography with refined editorial layout and structured offer hierarchy.", { size: "portrait", pdf: "/videos/Cibo Menu 2025.pdf", pdfTitle: "Cibo Italiano Menu Booklet (Arabic & English)", gallery: ["/images/restaurant/cibo-monday-lunch-menu.jpg", "/images/restaurant/cibo-wednesday-lunch-menu.jpg"] }],
   ["Trust Real Stationery", "branding", "/images/branding/trust-real-stationery.jpg", "A formal stationery presentation for Trust Real, using deep burgundy, cream stock and refined gold typography.", { size: "portrait" }],
   ["Quiet Certificate", "print-design", "/images/print-design/minimal-certificate.jpg", "A minimal certificate layout presented as a tactile print mockup with oversized vertical typography.", { size: "portrait" }],
   ["Appreciation Certificate", "print-design", "/images/print-design/certificate-of-appreciation.jpg", "A certificate of appreciation system shown through framed, folded and portrait applications.", { size: "portrait" }],

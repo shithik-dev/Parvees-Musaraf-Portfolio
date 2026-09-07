@@ -60,13 +60,6 @@ export default function VideoIntro() {
           {/* Cinematic overlay */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
 
-          {/* Small video label */}
-          <div className="pointer-events-none absolute bottom-5 left-5 sm:bottom-8 sm:left-8">
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/70 sm:text-xs">
-              {introVideo.label}
-            </span>
-          </div>
-
           {/* Playing indicator */}
           <div className="pointer-events-none absolute right-5 top-5 flex items-center gap-2 sm:right-8 sm:top-8">
             <span className="h-2 w-2 animate-pulse rounded-full bg-[#c7ff35]" />

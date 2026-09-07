@@ -71,9 +71,7 @@ className="h-full w-full object-cover object-center"
         transition={{ duration: 0.8, delay: 0.5 }}
         className="hidden text-right sm:block"
       >
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">
-          DUBAI,UAE
-        </p>
+      
 
         <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">
           DESIGN / MOTION / VISUALS
@@ -102,6 +100,10 @@ className="h-full w-full object-cover object-center"
           <span className="block text-white">PARVEES</span>
           <span className="block text-white/25">MUSARAF</span>
         </h1>
+
+        <p className="mt-5 font-mono text-xs uppercase tracking-[0.3em] text-white/60 sm:text-sm">
+          Dubai, UAE
+        </p>
       </motion.div>
 
       {/* Bottom Hero Information */}

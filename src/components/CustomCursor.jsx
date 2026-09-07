@@ -21,12 +21,12 @@ export default function CustomCursor() {
 
     const leave = () => setVisible(false);
 
-    window.addEventListener("mousemove", move);
-    document.addEventListener("mouseleave", leave);
+    window.addEventListener("pointermove", move, { passive: true });
+    document.addEventListener("pointerleave", leave);
 
     return () => {
-      window.removeEventListener("mousemove", move);
-      document.removeEventListener("mouseleave", leave);
+      window.removeEventListener("pointermove", move);
+      document.removeEventListener("pointerleave", leave);
     };
   }, []);
 
@@ -43,7 +43,7 @@ export default function CustomCursor() {
         damping: 30,
         mass: 0.2,
       }}
-      className="pointer-events-none fixed left-0 top-0 z-[10000] hidden h-3 w-3 rounded-full bg-[#c7ff35] lg:block"
+      className="pointer-events-none fixed left-0 top-0 z-[10000] block h-3 w-3 rounded-full bg-[#c7ff35]"
     />
   );
 }

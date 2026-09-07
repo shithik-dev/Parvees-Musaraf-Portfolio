@@ -51,9 +51,16 @@ className="h-full w-full object-cover transition-transform duration-700 ease-out
         {String(project.id).padStart(2, "0")}
       </span>
 
-      <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-[#c7ff35]">
-        {project.categoryLabel}
-      </span>
+      <div className="flex items-center gap-2">
+        {project.pdf && (
+          <span className="border border-[#c7ff35]/40 bg-black/60 px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.15em] text-[#c7ff35]">
+            PDF BOOKLET
+          </span>
+        )}
+        <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-[#c7ff35]">
+          {project.categoryLabel}
+        </span>
+      </div>
     </div>
 
     {/* Center View Project Button - ALWAYS VISIBLE */}

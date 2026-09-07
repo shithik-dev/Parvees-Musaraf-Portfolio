@@ -4,7 +4,7 @@ export const profile = {
   profession: "Graphic Designer & Video Editor",
 
   description:
-    "Creating visual identities, compelling campaigns, cinematic edits and digital experiences that make brands impossible to ignore.",
+    "I’m a creative Graphic Designer and Video Editor in Dubai with 3+ years of experience turning ideas into bold, eye-catching visuals and engaging video content. I specialize in logo design, branding, social media graphics, marketing creatives, video editing, reels, promotional videos, and digital content.",
 
   availability: "OPEN FOR CREATIVE PROJECTS",
 
