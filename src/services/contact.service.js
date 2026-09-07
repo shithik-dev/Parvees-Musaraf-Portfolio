@@ -11,7 +11,10 @@ export async function submitContactForm(formData) {
     body: JSON.stringify(formData),
   });
 
-  const data = await response.json();
+  const contentType = response.headers.get("content-type") || "";
+  const data = contentType.includes("application/json")
+    ? await response.json()
+    : { message: "The contact service is unavailable. Please try again later." };
 
   if (!response.ok) {
     throw new Error(
