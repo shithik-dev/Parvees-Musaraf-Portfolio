@@ -1,14 +1,19 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: Number(process.env.MAIL_PORT),
-  secure: process.env.MAIL_SECURE === "true",
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASSWORD,
-  },
-});
+function getTransporter() {
+  const port = process.env.MAIL_PORT ? Number(process.env.MAIL_PORT) : 587;
+  const secure = process.env.MAIL_SECURE === "true" || port === 465;
+
+  return nodemailer.createTransport({
+    host: process.env.MAIL_HOST,
+    port,
+    secure,
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD,
+    },
+  });
+}
 
 export async function sendContactEmail({
   name,
@@ -20,6 +25,18 @@ export async function sendContactEmail({
   details,
   referenceLink,
 }) {
+  const requiredEnvs = ["MAIL_HOST", "MAIL_USER", "MAIL_PASSWORD", "CONTACT_RECEIVER"];
+  const missingEnvs = requiredEnvs.filter((key) => !process.env[key]);
+
+  if (missingEnvs.length > 0) {
+    console.error(`Email config error. Missing variables: ${missingEnvs.join(", ")}`);
+    throw new Error(
+      `Email service configuration incomplete. Missing: ${missingEnvs.join(", ")}`
+    );
+  }
+
+  const transporter = getTransporter();
+
   const mailOptions = {
     from: `"Parvees Portfolio" <${process.env.MAIL_USER}>`,
     to: process.env.CONTACT_RECEIVER,

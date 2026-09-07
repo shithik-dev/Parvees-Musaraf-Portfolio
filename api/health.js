@@ -1,6 +1,9 @@
 import app from "../server/src/app.js";
 
 export default function handler(req, res) {
-  req.url = `/api/health${req.url === "/" ? "" : req.url}`;
+  if (req.url && !req.url.startsWith("/api")) {
+    req.url = `/api${req.url.startsWith("/") ? "" : "/"}${req.url}`;
+  }
+
   return app(req, res);
 }

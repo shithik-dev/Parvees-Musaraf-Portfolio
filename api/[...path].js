@@ -1,10 +1,8 @@
 import app from "../server/src/app.js";
 
 export default function handler(req, res) {
-  const requestPath = req.url === "/" ? "" : req.url;
-
-  if (!requestPath.startsWith("/api")) {
-    req.url = `/api${requestPath}`;
+  if (req.url && !req.url.startsWith("/api")) {
+    req.url = `/api${req.url.startsWith("/") ? "" : "/"}${req.url}`;
   }
 
   return app(req, res);
