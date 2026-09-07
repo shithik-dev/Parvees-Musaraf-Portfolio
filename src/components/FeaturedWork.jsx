@@ -69,7 +69,7 @@ export default function FeaturedWork() {
                 <span className="h-2 w-2 rounded-full bg-[#c7ff35]" />
 
                 <span className="font-mono text-[10px] tracking-[0.25em] text-[#c7ff35]">
-                  PORTFOLIO
+                  WORK
                 </span>
               </div>
 
