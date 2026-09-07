@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
+import { useState } from "react";
 import { profile } from "../data/profile";
 
 export default function About() {
+  const [isImageColor, setIsImageColor] = useState(false);
+
+  const toggleImageColor = () => setIsImageColor((isColor) => !isColor);
+
   return (
     <section
       id="about"
@@ -51,7 +56,17 @@ export default function About() {
               <img
                 src={profile.heroImages[1]}
                 alt={`${profile.name} — ${profile.profession}`}
-                className="h-full w-full object-cover grayscale transition duration-700 hover:scale-105 hover:grayscale-0"
+                onClick={toggleImageColor}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    toggleImageColor();
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={isImageColor}
+                className={`h-full w-full cursor-pointer object-cover transition duration-700 hover:scale-105 ${isImageColor ? "grayscale-0" : "grayscale hover:grayscale-0"}`}
               />
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
