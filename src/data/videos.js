@@ -8,7 +8,7 @@ export const videos = [
     description:
       "Before you see the work, understand the thinking behind it.",
     video: "/videos/what-is-graphic-design.mp4",
-    poster: "/images/video/graphic-design-poster.jpg",
+    
     featured: true,
   },
 

@@ -7,7 +7,7 @@ import { errorHandler } from "./middleware/error.middleware.js";
 
 const app = express();
 
-const allowedOrigin = process.env.CLIENT_URL || "http://localhost:5173";
+const allowedOrigin = process.env.CLIENT_URL || true;
 
 app.use(
   cors({
