@@ -41,10 +41,7 @@ export default function VideoIntro() {
           transition={{ duration: 1 }}
           className="relative w-full overflow-hidden bg-black"
         >
-          <div
-            className="relative w-full overflow-hidden bg-black"
-            style={{ aspectRatio: "1283 / 270" }}
-          >
+          <div className="relative aspect-[16/9] w-full overflow-hidden bg-black sm:aspect-[2/1] lg:aspect-[1283/360]">
             <video
               src={introVideo.video}
               poster={introVideo.poster}
