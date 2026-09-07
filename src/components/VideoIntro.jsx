@@ -50,7 +50,7 @@ export default function VideoIntro() {
               loop
               playsInline
               preload="auto"
-              className="absolute inset-0 h-full w-full object-cover object-center"
+              className="absolute inset-0 h-full w-full object-contain object-center"
             />
           </div>
 

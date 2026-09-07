@@ -115,7 +115,7 @@ export default function Footer() {
 
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="group inline-flex min-w-0 max-w-full flex-wrap items-center gap-3 break-all font-mono text-[10px] uppercase tracking-[0.2em] text-white/40 transition-colors duration-300 hover:text-white sm:w-fit sm:text-xs"
+                className="group inline-flex min-w-0 max-w-full flex-nowrap items-center gap-3 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.08em] text-white/40 transition-colors duration-300 hover:text-white sm:w-fit sm:text-xs sm:tracking-[0.2em]"
               >
                 <Mail className="h-4 w-4" />
 
