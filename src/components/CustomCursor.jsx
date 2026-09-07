@@ -10,7 +10,7 @@ export default function CustomCursor() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const move = (event) => {
+    const updatePosition = (event) => {
       setPosition({
         x: event.clientX,
         y: event.clientY,
@@ -21,11 +21,13 @@ export default function CustomCursor() {
 
     const leave = () => setVisible(false);
 
-    window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("pointermove", updatePosition, { passive: true });
+    window.addEventListener("pointerdown", updatePosition, { passive: true });
     document.addEventListener("pointerleave", leave);
 
     return () => {
-      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointermove", updatePosition);
+      window.removeEventListener("pointerdown", updatePosition);
       document.removeEventListener("pointerleave", leave);
     };
   }, []);
