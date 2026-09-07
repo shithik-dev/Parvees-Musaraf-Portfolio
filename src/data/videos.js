@@ -34,15 +34,26 @@ export const videos = [
 
 
   {
-    id: 3,
-    title: "Video Project Two",
-    category: "Video Editing",
-    label: "02 — VIDEO EDITING",
-    description:
-      "A visual story crafted through pacing, composition, sound and motion.",
-    video: "/videos/video-project-02.mp4",
-    poster: "/images/video/video-02.jpg",
-    featured: true,
-  },
+  id: 3,
+  title: "Carousel Design Masterclass",
+  category: "Video Editing",
+  label: "02 — VIDEO EDITING",
+  description:
+    "A dynamic social-media promo showcasing a crispy chicken carousel concept through bold typography, layered compositions, product-focused visuals, and smooth motion.",
+  video: "/videos/video-project-02.mp4",
+  poster: "/videos/video-02.jpg",
+  featured: true,
+},
+{
+  id: 4,
+  title: "Brand Guideline — Visual Identity",
+  category: "Video Editing",
+  label: "03 — VIDEO EDITING",
+  description:
+    "A creative brand identity showcase documenting the design process from concept to final guideline. The video explores typography, colors, logo usage, social media layouts, and visual composition through a bold blue-and-white design system.",
+  video: "/videos/video-project-03.mp4",
+  poster: "/videos/video-03.jpg",
+  featured: true,
+}
 ];
 

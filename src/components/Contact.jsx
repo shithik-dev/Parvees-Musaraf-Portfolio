@@ -533,25 +533,23 @@ export default function Contact() {
               ========================= */}
 
               {status === "success" && (
-                <div
-                  role="status"
-                  className="mt-6 flex items-start gap-3 border border-[#c7ff35]/20 bg-[#c7ff35]/5 p-4"
-                >
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#c7ff35]" />
+  <div
+    role="status"
+    className="mt-6 flex items-start gap-3 border border-[#c7ff35]/20 bg-[#c7ff35]/5 p-4"
+  >
+    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#c7ff35]" />
 
-                  <div>
-                    <p className="font-mono text-xs uppercase tracking-[0.15em] text-[#c7ff35]">
-                      INQUIRY READY
-                    </p>
+    <div>
+      <p className="font-mono text-xs uppercase tracking-[0.15em] text-[#c7ff35]">
+        MESSAGE RECEIVED
+      </p>
 
-                    <p className="mt-1 text-sm leading-6 text-white/50">
-                      Your project details have been validated.
-                      Connect the form to your preferred backend
-                      or form service to receive submissions.
-                    </p>
-                  </div>
-                </div>
-              )}
+      <p className="mt-1 text-sm leading-6 text-white/70">
+        Thank you for sharing your project — I&apos;ll be in touch soon.
+      </p>
+    </div>
+  </div>
+)}
 
               {status === "error" && (
                 <div

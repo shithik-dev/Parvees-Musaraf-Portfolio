@@ -46,14 +46,12 @@ ${projectType}
 Project Timeline:
 ${timeline || "Not provided"}
 
-How did they find you?
-${source || "Not provided"}
+
 
 Project Details:
 ${details}
 
-Reference / Inspiration Link:
-${referenceLink || "Not provided"}
+
     `,
 
     html: `

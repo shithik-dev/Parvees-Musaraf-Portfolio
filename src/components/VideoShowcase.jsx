@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import VideoCard from "./VideoCard";
 import { videos } from "../data/videos";
@@ -121,7 +120,10 @@ export default function VideoShowcase() {
               </div>
 
               {/* VIDEO */}
-              <VideoCard video={videoProjects[1]} aspectRatio="9 / 16" />
+              <VideoCard
+                video={videoProjects[1]}
+                aspectRatio="9 / 16"
+              />
 
               {/* Project Information */}
               <div className="mt-6 grid gap-6 md:grid-cols-[1fr_auto]">
@@ -137,6 +139,50 @@ export default function VideoShowcase() {
 
                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/25">
                   {videoProjects[1].category}
+                </span>
+              </div>
+            </motion.article>
+          )}
+
+          {/* =========================================
+              VIDEO PROJECT 03
+          ========================================= */}
+          {videoProjects[2] && (
+            <motion.article
+              initial={{ opacity: 0, y: 70 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.9 }}
+              className="w-full"
+            >
+              {/* Project Header */}
+              <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#c7ff35]">
+                  {videoProjects[2].label}
+                </span>
+
+                <span className="font-mono text-xs text-white/30">
+                  03 / {videoProjects.length}
+                </span>
+              </div>
+
+              {/* VIDEO */}
+              <VideoCard video={videoProjects[2]} />
+
+              {/* Project Information */}
+              <div className="mt-6 grid gap-6 md:grid-cols-[1fr_auto]">
+                <div>
+                  <h3 className="font-display text-3xl font-bold uppercase tracking-[-0.03em] text-white md:text-4xl">
+                    {videoProjects[2].title}
+                  </h3>
+
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/40 md:text-base">
+                    {videoProjects[2].description}
+                  </p>
+                </div>
+
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/25">
+                  {videoProjects[2].category}
                 </span>
               </div>
             </motion.article>
@@ -167,4 +213,3 @@ export default function VideoShowcase() {
     </section>
   );
 }
-

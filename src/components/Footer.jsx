@@ -51,7 +51,7 @@ const socialLinks = [
   },
   {
     label: "GITHUB",
-    href: "#",
+    href: "https://github.com/Parveesmusraf",
     icon: GitBranch,
   },
 ];
